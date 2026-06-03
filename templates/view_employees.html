@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>View Employees</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+ <script src="{{ url_for('static', filename='script.js') }}"></script>
+<body>
+  <h2>Employee List</h2>
+  <table border="1">
+    <tr>
+      <th>ID</th><th>Name</th><th>Email</th><th>Phone</th>
+      <th>Salary</th><th>Department</th><th>Job</th><th>Action</th>
+    </tr>
+    {% for emp in employees %}
+    <tr>
+      <td>{{ emp.emp_id }}</td>
+      <td>{{ emp.first_name }} {{ emp.last_name }}</td>
+      <td>{{ emp.email }}</td>
+      <td>{{ emp.phone }}</td>
+      <td>{{ emp.salary }}</td>
+      <td>{{ emp.dept_name }}</td>
+      <td>{{ emp.job_title }}</td>
+      <td><a href="{{ url_for('delete_employee', emp_id=emp.emp_id) }}" onclick="return confirm('Delete this employee?')">🗑 Delete</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  <a href="{{ url_for('index') }}">🏠 Back to Home</a>
+</body>
+</html>

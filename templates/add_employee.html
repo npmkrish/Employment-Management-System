@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Employee</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<body>
+  <h2>Add New Employee</h2>
+  <form method="POST">
+    <label>First Name:</label><input type="text" name="first_name" required><br>
+    <label>Last Name:</label><input type="text" name="last_name" required><br>
+    <label>Email:</label><input type="email" name="email" required><br>
+    <label>Phone:</label><input type="text" name="phone" required><br>
+    <label>Salary:</label><input type="number" name="salary" required><br>
+
+    <label>Department:</label>
+    <select name="dept_id" required>
+      {% for dept in departments %}
+      <option value="{{ dept.dept_id }}">{{ dept.dept_name }}</option>
+      {% endfor %}
+    </select><br>
+
+    <label>Job:</label>
+    <select name="job_id" required>
+      {% for job in jobs %}
+      <option value="{{ job.job_id }}">{{ job.job_title }}</option>
+      {% endfor %}
+    </select><br>
+
+    <button type="submit">Add Employee</button>
+  </form>
+  <a href="{{ url_for('index') }}">🏠 Back to Home</a>
+</body>
+</html>
