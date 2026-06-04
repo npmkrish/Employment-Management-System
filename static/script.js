@@ -90,3 +90,10 @@ document.addEventListener("DOMContentLoaded", function() {
     setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
   }
 });
+function sortTableByColumn(table, columnIndex) {
+  const rows = Array.from(table.rows).slice(1);
+  const isAscending = table.getAttribute("data-sort") !== "asc";
+  rows.sort((a, b) => {
+    const aText = a.cells[columnIndex].textContent.trim();
+    const bText = b.cells[columnIndex].textContent.trim();
+    return isAscending ? aText.localeCompare(bText) : bText.localeCompare(aText);
