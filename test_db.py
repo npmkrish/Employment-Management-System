@@ -7,7 +7,7 @@ try:
         user="root",
         password="KKK123@0",   # your password here, if any
         database="company_db",
-        connection_timeout=5
+        connection_timeout=4
         
     )
     if conn.is_connected():
