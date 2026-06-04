@@ -97,3 +97,13 @@ function sortTableByColumn(table, columnIndex) {
     const aText = a.cells[columnIndex].textContent.trim();
     const bText = b.cells[columnIndex].textContent.trim();
     return isAscending ? aText.localeCompare(bText) : bText.localeCompare(aText);
+  });
+  rows.forEach(row => table.appendChild(row));
+  table.setAttribute("data-sort", isAscending ? "asc" : "desc");
+}
+const deleteLinks = document.querySelectorAll('a[href*="delete"]');
+deleteLinks.forEach(link => {
+  link.addEventListener("click", function(event) {
+    if (!confirm("⚠️ Are you sure you want to delete this employee?")) {
+      event.preventDefault();
+    }
