@@ -101,4 +101,12 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 }); 
-
+document.addEventListener("DOMContentLoaded", function() {
+  const toast = document.createElement("div");
+  toast.id = "toast";
+  document.body.appendChild(toast); 
+  function showToast(message) {
+    toast.textContent = message;
+    toast.className = "show";
+    setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
+  }
