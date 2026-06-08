@@ -91,3 +91,6 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+  const deleteLinks = document.querySelectorAll('a[href*="delete"]');
+
