@@ -56,5 +56,6 @@ def delete_employee(emp_id):
 
 if __name__ == '__main__':
     app.run(debug=True)
-
- 
+elif __name__ == 'wsgi':
+    from werkzeug.middleware.proxy_fix import ProxyFix
+    app.wsgi_app = ProxyFix(app.wsgi_app)    
