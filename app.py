@@ -57,4 +57,10 @@ def delete_employee(emp_id):
 if __name__ == '__main__':
     conn = get_db_connection()
     cursor = conn.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS departments (
+            dept_id INT AUTO_INCREMENT PRIMARY KEY,
+            dept_name VARCHAR(100) NOT NULL
+        )
+    """)
      
