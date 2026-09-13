@@ -63,4 +63,10 @@ if __name__ == '__main__':
             dept_name VARCHAR(100) NOT NULL
         )
     """)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS jobs (
+            job_id INT AUTO_INCREMENT PRIMARY KEY,
+            job_title VARCHAR(100) NOT NULL
+        )
+    """)
      
