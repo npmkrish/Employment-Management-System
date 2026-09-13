@@ -54,19 +54,6 @@ def delete_employee(emp_id):
     conn.close()
     return redirect(url_for('view_employees'))
 
-if __name__ == '__main__':
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS departments (
-            dept_id INT AUTO_INCREMENT PRIMARY KEY,
-            dept_name VARCHAR(100) NOT NULL
-        )
-    """)
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS jobs (
-            job_id INT AUTO_INCREMENT PRIMARY KEY,
-            job_title VARCHAR(100) NOT NULL
-        )
-    """)
+
+
      
