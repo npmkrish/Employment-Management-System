@@ -54,13 +54,7 @@ def delete_employee(emp_id):
     conn.close()
     return redirect(url_for('view_employees'))
 
-def get_employee(emp_id):
-    conn = get_db_connection()
-    cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM employees WHERE emp_id = %s", (emp_id,))
-    employee = cursor.fetchone()
-    conn.close()
-    return employee
+
 
 
      
