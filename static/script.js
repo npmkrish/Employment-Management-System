@@ -91,4 +91,11 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
+ // Edit Employee Functionality
+  const editLinks = document.querySelectorAll('a[href*="edit"]');
 
+  editLinks.forEach(link => {
+    link.addEventListener("click", function () {
+      showToast("✏️ Opening employee details for editing...");
+    });
+  });
