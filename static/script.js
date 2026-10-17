@@ -123,3 +123,21 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
   }
+// Display total employee count
+  function updateEmployeeCount() {
+    if (!table) return;
+
+    const rows = table.querySelectorAll("tbody tr");
+    const count = Array.from(rows).filter(row => {
+      return row.style.display !== "none";
+    }).length;
+      let countDisplay = document.getElementById("employee-count");
+
+    if (!countDisplay) {
+      countDisplay = document.createElement("p");
+      countDisplay.id = "employee-count";
+      table.parentNode.insertBefore(countDisplay, table);
+    }
+
+    countDisplay.textContent = `👥 Employees displayed: ${count}`;
+  }
