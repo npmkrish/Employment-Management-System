@@ -108,3 +108,18 @@ document.addEventListener("DOMContentLoaded", function() {
       showToast("🔄 Form has been reset!");
     });
   }  
+
+  // Highlight table rows on hover
+  if (table) {
+    const rows = table.querySelectorAll("tbody tr");
+
+    rows.forEach(row => {
+      row.addEventListener("mouseenter", function () {
+        this.style.backgroundColor = "#f1f5f9";
+      });
+
+      row.addEventListener("mouseleave", function () {
+        this.style.backgroundColor = "";
+      });
+    });
+  }
