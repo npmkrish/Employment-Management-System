@@ -99,3 +99,12 @@ document.addEventListener("DOMContentLoaded", function() {
       showToast("✏️ Opening employee details for editing...");
     });
   });
+
+  // Reset form fields
+  const resetButton = document.querySelector('button[type="reset"]');
+
+  if (resetButton) {
+    resetButton.addEventListener("click", function () {
+      showToast("🔄 Form has been reset!");
+    });
+  }  
