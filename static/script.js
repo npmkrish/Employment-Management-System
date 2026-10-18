@@ -141,3 +141,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     countDisplay.textContent = `👥 Employees displayed: ${count}`;
   }
+
+
+  if (table) {
+    updateEmployeeCount();
+
+      if (searchInput) {
+      searchInput.addEventListener("input", updateEmployeeCount);
+    }
+  }
+
+  console.log("✅ Employee Management System enhancements loaded!");
+  
