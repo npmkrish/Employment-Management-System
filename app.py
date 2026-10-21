@@ -57,3 +57,7 @@ def delete_employee(emp_id):
 if __name__ == '__main__':
     app.run(debug=True)
      
+elif __name__ == '__main__':
+    from config import init_db
+    init_db()
+    app.run(debug=True)
