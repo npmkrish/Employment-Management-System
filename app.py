@@ -69,4 +69,30 @@ else:
 
 @app.route('/update/<int:emp_id>', methods=['GET', 'POST'])
 def update_employee(emp_id):    
-    
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    if request.method == 'POST':
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
+        email = request.form['email']
+        phone = request.form['phone']
+        salary = request.form['salary']
+        dept_id = request.form['dept_id']
+        job_id = request.form['job_id']
+        cursor.execute("""
+            UPDATE employees
+            SET first_name = %s, last_name = %s, email = %s, phone = %s, salary = %s, dept_id = %s, job_id = %s
+            WHERE emp_id = %s
+        """, (first_name, last_name, email, phone, salary, dept_id, job_id, emp_id))
+        conn.commit()
+        conn.close()
+        return redirect(url_for('view_employees'))
+
+    cursor.execute("SELECT * FROM employees WHERE emp_id = %s", (emp_id,))
+    employee = cursor.fetchone()
+    cursor.execute("SELECT * FROM departments")
+    departments = cursor.fetchall()
+    cursor.execute("SELECT * FROM jobs")
+    jobs = cursor.fetchall()
+    conn.close()
+    return render_template('update_employee.html', employee=employee, departments=departments, jobs=jobs)
