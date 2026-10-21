@@ -61,3 +61,12 @@ elif __name__ == '__main__':
     from config import init_db
     init_db()
     app.run(debug=True)
+
+else:
+    from config import init_db
+    init_db()
+    app.run(debug=True)
+
+@app.route('/update/<int:emp_id>', methods=['GET', 'POST'])
+def update_employee(emp_id):    
+    
