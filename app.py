@@ -54,7 +54,6 @@ def delete_employee(emp_id):
     conn.close()
     return redirect(url_for('view_employees'))
 
-
-
-
+if __name__ == '__main__':
+    app.run(debug=True)
      
