@@ -54,7 +54,6 @@ def delete_employee(emp_id):
     conn.close()
     return redirect(url_for('view_employees'))
 
-
 @app.route('/update/<int:emp_id>', methods=['GET', 'POST'])
 def update_employee(emp_id):    
     conn = get_db_connection()
@@ -85,4 +84,44 @@ def update_employee(emp_id):
     conn.close()
     return render_template('update_employee.html', employee=employee, departments=departments, jobs=jobs)
 
-  
+@app.route('/search')
+def search_employees():
+    q = request.args.get('q', '').strip()
+    like = f"%{q}%"
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("""
+        SELECT e.emp_id, e.first_name, e.last_name, e.email, e.phone, e.salary,
+               d.dept_name, j.job_title
+        FROM employees e
+        LEFT JOIN departments d ON e.dept_id = d.dept_id
+        LEFT JOIN jobs j ON e.job_id = j.job_id
+        WHERE e.first_name LIKE %s OR e.last_name LIKE %s
+           OR e.email LIKE %s OR d.dept_name LIKE %s
+    """, (like,) * 4)
+    employees = cursor.fetchall()
+    conn.close()
+    return render_template('view_employees.html', employees=employees)
+
+
+@app.route('/departments')
+def department_summary():
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("""
+        SELECT d.dept_name,
+               COUNT(e.emp_id) AS total_employees,
+               ROUND(AVG(e.salary), 2) AS avg_salary
+        FROM departments d
+        LEFT JOIN employees e ON d.dept_id = e.dept_id
+        GROUP BY d.dept_id, d.dept_name
+    """)
+    summary = cursor.fetchall()
+    conn.close()
+    return render_template('department_summary.html', summary=summary) 
+
+if __name__ == '__main__':
+    from config import init_db
+    init_db()
+    app.run(debug=True) 
+    
