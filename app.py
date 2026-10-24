@@ -54,18 +54,6 @@ def delete_employee(emp_id):
     conn.close()
     return redirect(url_for('view_employees'))
 
-if __name__ == '__main__':
-    app.run(debug=True)
-     
-elif __name__ == '__main__':
-    from config import init_db
-    init_db()
-    app.run(debug=True)
-
-else:
-    from config import init_db
-    init_db()
-    app.run(debug=True)
 
 @app.route('/update/<int:emp_id>', methods=['GET', 'POST'])
 def update_employee(emp_id):    
@@ -96,3 +84,5 @@ def update_employee(emp_id):
     jobs = cursor.fetchall()
     conn.close()
     return render_template('update_employee.html', employee=employee, departments=departments, jobs=jobs)
+
+  
